@@ -1,7 +1,6 @@
 # Configure the AWS provider
 provider "aws" {
   region = "us-west-2"
-  
 }
 
 # Create an IAM role for the EKS cluster
@@ -50,6 +49,7 @@ resource "aws_iam_role_policy_attachment" "botgauge" {
   role       = aws_iam_role.botgauge.name
   policy_arn = aws_iam_policy.botgauge.arn
 }
+
 # Create a VPC
 resource "aws_vpc" "botgauge" {
   cidr_block = "10.0.0.0/16"
