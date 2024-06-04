@@ -1,0 +1,14 @@
+name: Destroy EKS Cluster
+on:
+  push:
+    branches: [ "destroy" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Destroy EKS CLuster and Application
+      run: |
+        terraform destroy -auto-approve
