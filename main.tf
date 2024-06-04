@@ -5,8 +5,7 @@ provider "aws" {
   access_key = env("AWS_ACCESS_KEY_ID")
   secret_key = env("AWS_SECRET_ACCESS_KEY")
 
-  # Use IAM role
-  #assume_role {    role_arn = "arn:aws:iam::381492205669:user/botgauge"  }
+  
 }
 
 # Create an IAM role for the EKS cluster
