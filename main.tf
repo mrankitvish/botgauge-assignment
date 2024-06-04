@@ -4,8 +4,8 @@ provider "aws" {
 }
 
 # Create an IAM role for the EKS cluster
-resource "aws_iam_role" "botgauge" {
-  name        = "botgauge"
+resource "aws_iam_role" "botgauge-app" {
+  name        = "botgauge-app"
   description = "EKS cluster role"
 
   assume_role_policy = <<EOF
@@ -26,8 +26,8 @@ EOF
 }
 
 # Create an IAM policy for the EKS cluster
-resource "aws_iam_policy" "botgauge" {
-  name        = "botgauge"
+resource "aws_iam_policy" "botgauge-app" {
+  name        = "botgauge-app"
   description = "EKS cluster policy"
 
   policy      = <<EOF
@@ -45,48 +45,48 @@ EOF
 }
 
 # Attach the IAM policy to the IAM role
-resource "aws_iam_role_policy_attachment" "botgauge" {
-  role       = aws_iam_role.botgauge.name
-  policy_arn = aws_iam_policy.botgauge.arn
+resource "aws_iam_role_policy_attachment" "botgauge-app" {
+  role       = aws_iam_role.botgauge-app.name
+  policy_arn = aws_iam_policy.botgauge-app.arn
 }
 
 # Create a VPC
-resource "aws_vpc" "botgauge" {
+resource "aws_vpc" "botgauge-app" {
   cidr_block = "10.0.0.0/16"
 }
 
 # Create public subnets in different AZs
-resource "aws_subnet" "botgauge_public" {
+resource "aws_subnet" "botgauge-app-public" {
   cidr_block = "10.0.1.0/24"
-  vpc_id     = aws_vpc.botgauge.id
+  vpc_id     = aws_vpc.botgauge-app.id
   availability_zone = "us-west-2a"
 }
 
-resource "aws_subnet" "botgauge_public_2" {
+resource "aws_subnet" "botgauge-app-public-2" {
   cidr_block = "10.0.2.0/24"
-  vpc_id     = aws_vpc.botgauge.id
+  vpc_id     = aws_vpc.botgauge-app.id
   availability_zone = "us-west-2b"
 }
 
 # Create private subnets in different AZs
-resource "aws_subnet" "botgauge_private" {
+resource "aws_subnet" "botgauge-app-private" {
   cidr_block = "10.0.3.0/24"
-  vpc_id     = aws_vpc.botgauge.id
+  vpc_id     = aws_vpc.botgauge-app.id
   availability_zone = "us-west-2a"
 }
 
-resource "aws_subnet" "botgauge_private_2" {
+resource "aws_subnet" "botgauge-app-private-2" {
   cidr_block = "10.0.4.0/24"
-  vpc_id     = aws_vpc.botgauge.id
+  vpc_id     = aws_vpc.botgauge-app.id
   availability_zone = "us-west-2b"
 }
 
 # Create an EKS cluster
-resource "aws_eks_cluster" "botgauge" {
-  name     = "botgauge"
-  role_arn = aws_iam_role.botgauge.arn
+resource "aws_eks_cluster" "botgauge-app" {
+  name     = "botgauge-app"
+  role_arn = aws_iam_role.botgauge-app.arn
 
   vpc_config {
-    subnet_ids = [aws_subnet.botgauge_public.id, aws_subnet.botgauge_public_2.id, aws_subnet.botgauge_private.id, aws_subnet.botgauge_private_2.id]
+    subnet_ids = [aws_subnet.botgauge-app-public.id, aws_subnet.botgauge-app-public-2.id, aws_subnet.botgauge-app-private.id, aws_subnet.botgauge-app-private-2.id]
   }
 }
