@@ -52,7 +52,7 @@ CMD ["./main"]
 ### Step 3: Create Terraform Configuration for EKS Cluster
 Create a main.tf file to provision an automated EKS Cluster on AWS.
 
-``` json
+```hcl
 # Configure the AWS provider
 provider "aws" {
   region = "us-west-2"
