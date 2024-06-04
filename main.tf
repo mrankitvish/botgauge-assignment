@@ -1,6 +1,7 @@
 # Configure the AWS provider
 provider "aws" {
   region = "us-west-2"
+  
 }
 
 # Create an IAM role for the EKS cluster
