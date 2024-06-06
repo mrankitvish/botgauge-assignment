@@ -56,5 +56,4 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          random_name=$(cat random_name.txt)
-          helm upgrade --install botgauge-app-$random_name ./helm-chart  
+          helm upgrade --install botgauge-app ./helm-chart  
