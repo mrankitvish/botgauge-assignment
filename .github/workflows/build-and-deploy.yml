@@ -28,6 +28,7 @@ jobs:
     - name: Push Docker image
       run: |
           docker push mrankitvish/botgauge-app:latest
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -50,7 +51,7 @@ jobs:
     - name: Configure Terraform
       run: |
         terraform init
-        terraform apply -auto-approve -var "eks_cluster_name=botgauge-app-$RANDOM_NAME"
+        terraform apply -auto-approve -var "random_name=$RANDOM_NAME"
 
     - name: Deploy to EKS
       run: |
