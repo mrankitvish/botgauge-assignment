@@ -41,12 +41,13 @@ jobs:
       - name: Generate random name
         run: |
           RANDOM_NAME=$(date +%s | sha256sum | base64 | tr -d '=' | cut -c1-8 | tr -d '\n')
-          echo "Random name: $RANDOM_NAME"
+          echo "$RANDOM_NAME" > random_name.txt
 
       - name: Configure Terraform 
         run: |
+          random_name=$(cat random_name.txt)
           terraform init
-          terraform apply -auto-approve -var "random_name=$RANDOM_NAME"  
+          terraform apply -auto-approve -var "random_name=$random_name"  
 
       - name: Configure kubeconfig
         run: |
