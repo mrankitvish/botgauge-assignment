@@ -51,8 +51,10 @@ jobs:
 
       - name: Configure kubeconfig
         run: |
-          aws eks update-kubeconfig --name eks-cluster-$RANDOM_NAME --region us-west-2
+          random_name=$(cat random_name.txt)
+          aws eks update-kubeconfig --name eks-cluster-$random_name --region us-west-2
 
       - name: Deploy to EKS
         run: |
-          helm upgrade --install botgauge-app-$RANDOM_NAME ./helm-chart  
+          random_name=$(cat random_name.txt)
+          helm upgrade --install botgauge-app-$random_name ./helm-chart  
