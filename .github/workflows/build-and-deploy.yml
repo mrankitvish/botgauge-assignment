@@ -43,7 +43,7 @@ jobs:
           echo "Random name: $RANDOM_NAME"
       - name: Configure kubeconfig
         run: |
-          aws eks update-kubeconfig --name $RANDOM_NAME --region 
+          aws eks update-kubeconfig --name eks-cluster-$RANDOM_NAME --region us-west-2
       - name: Configure Terraform 
         run: |
           terraform init
