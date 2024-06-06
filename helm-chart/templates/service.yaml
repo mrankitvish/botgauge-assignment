@@ -10,3 +10,7 @@ spec:
     port: {{ .Values.service.port }}
     targetPort: 8080
   type: {{ .Values.service.type }}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: 'nlb' # or 'alb'
+    service.beta.kubernetes.io/aws-load-balancer-name: {{ .Release.Name }}
+    service.beta.kubernetes.io/aws-load-balancer-scheme: 'internet-facing' # or 'internal'
