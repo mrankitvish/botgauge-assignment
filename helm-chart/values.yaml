@@ -1,3 +1,6 @@
 image:
   repository: mrankitvish/botgauge-app
   tag: latest
+service:
+  type: LoadBalancer
+  port: 8080
