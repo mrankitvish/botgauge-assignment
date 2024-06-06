@@ -65,14 +65,12 @@ resource "aws_subnet" "eks_cluster_public" {
   cidr_block = "10.0.1.0/24"
   vpc_id     = aws_vpc.eks_cluster_vpc.id
   availability_zone = "us-west-2a"
-  name        = "eks-cluster-public-${var.random_name}"
 }
 
 resource "aws_subnet" "eks_cluster_public_2" {
   cidr_block = "10.0.2.0/24"
   vpc_id     = aws_vpc.eks_cluster_vpc.id
   availability_zone = "us-west-2b"
-  name        = "eks-cluster-public-2-${var.random_name}"
 }
 
 # Create private subnets in different AZs
@@ -80,14 +78,12 @@ resource "aws_subnet" "eks_cluster_private" {
   cidr_block = "10.0.3.0/24"
   vpc_id     = aws_vpc.eks_cluster_vpc.id
   availability_zone = "us-west-2a"
-  name        = "eks-cluster-private-${var.random_name}"
 }
 
 resource "aws_subnet" "eks_cluster_private_2" {
   cidr_block = "10.0.4.0/24"
   vpc_id     = aws_vpc.eks_cluster_vpc.id
   availability_zone = "us-west-2b"
-  name        = "eks-cluster-private-2-${var.random_name}"
 }
 
 # Create an EKS cluster
