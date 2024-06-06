@@ -58,7 +58,6 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_role_policy_attachment" {
 # Create a VPC
 resource "aws_vpc" "eks_cluster_vpc" {
   cidr_block = "10.0.0.0/16"
-  name       = "eks-cluster-vpc-${var.random_name}"
 }
 
 # Create public subnets in different AZs
