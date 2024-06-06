@@ -1,7 +1,6 @@
 # Configure the AWS provider
 provider "aws" {
   region = "us-west-2"
-  
 }
 
 # Create an IAM role for the EKS cluster
@@ -27,7 +26,7 @@ EOF
 }
 
 # Create an IAM policy for the EKS cluster
-resource "aws_iam_policy" "my-botgauge-app" {
+resource "aws_iam_policy" "botgauge-app" {
   name        = "botgauge-app"
   description = "EKS cluster policy"
 
